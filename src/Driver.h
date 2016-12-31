@@ -3,10 +3,28 @@
 
 #include <queue>
 #include "MaritalStatus.h"
-#include "GridNode.h"
-#include "BaseCab.h"
 #include "TripInformation.h"
+#include "BaseCab.h"
 #include <iostream>
+#include <boost/serialization/access.hpp>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/tokenizer.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/assign/list_of.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+
+using namespace std;
+using namespace boost::archive;
 
 
 /**
@@ -22,10 +40,10 @@ private:
     int numberOfCustomers;
     double averageSatisfaction;
     bool available;
-    BaseCab* taxiCab;
+    BaseCab *taxiCab;
     MaritalStatus maritalStatus;
     int vehicleId;
-    TripInformation* tripInformation;
+    TripInformation *tripInformation;
 
 public:
     /**
@@ -41,6 +59,24 @@ public:
      * @param yearsOfExperience is the years of experience that the driver has.
      */
     Driver(int driverId, int age, char status, int experience, int vehicleId);
+// exampple of boo
+
+    template <class Archive>
+    void serialize(Archive &ar, const unsigned int version) {
+        // ar & status;
+        //ar & location;
+        //ar & passengers;
+        ar & id;
+        ar & age;
+        ar & yearsOfExperience;
+        ar & vehicleId;
+        ar & available;
+        ar & taxiCab;
+        ar & averageSatisfaction;
+        ar & tripInformation;
+
+
+}
 
     /**
      * returns the id of the driver.const because a person's id does not change.
@@ -165,6 +201,5 @@ public:
     void setTripInformation(TripInformation *tripInformation);
 
 };
-
 
 #endif //EX1_DRIVER_H

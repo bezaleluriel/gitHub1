@@ -6,7 +6,6 @@
 /**
  * this class is the holder of the bfs algorithm. it receives a start and end point and a data structure and
  * it has a function that can calculate the shortest way between two points on the data structure.
- */
 
 /**
  * default constructor.

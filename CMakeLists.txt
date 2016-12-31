@@ -2,7 +2,11 @@ cmake_minimum_required(VERSION 3.3)
 project(SettingUoGoogleTest)
 
 SET( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -lpthread")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+set(BOOST_ROOT CACHE PATH "/usr/include/boost/")
+find_package(Boost 1.58.0 COMPONENTS serialization system)
+include_directories(${Boost_INCLUDE_DIR})
+
 set(SOURCE_FILES main.cpp Tests/ClassName.h Tests/test.cpp Tests/PoinTest.cpp src/Point.cpp
         src/Point.h src/BeginningInfoReader.cpp
         src/BeginningInfoReader.h src/Bfs.cpp src/Bfs.h src/Grid.cpp src/Grid.h src/GridNode.cpp
@@ -27,7 +31,9 @@ add_executable(SettingUoGoogleTest ${SOURCE_FILES} Tests/ClassName.h Tests/test.
         Tests/PassengerTest.cpp Tests/TaxiCenterTest.cpp Tests/TripInformationTest.cpp Tests/StandartCabTest.cpp src/BaseCab.cpp src/BaseCab.h src/main.cpp Tests/LaxuryCabTest.cpp)
         
         target_link_libraries(SettingUoGoogleTest gtest gtest_main)
-        
+
+
+target_link_libraries(SettingUoGoogleTest ${Boost_LIBRARIES})
 add_subdirectory(lib/googletest-master)
 include_directories(lib/googletest-master/googletest/include)
 include_directories(lib/googletest-master/googlemock/include)
