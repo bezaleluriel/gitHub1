@@ -7,17 +7,32 @@
 #include "src/BeginningInfoReader.h"
 #include "src/MainFlow.h"
 //#include <boost/thread.hpp>
+#include "src/sockets/Udp.h"
+#include "src/Driver.h"
+#include "src/StandardCab.h"
+#include <unistd.h>
 
+using namespace std;
 
-/**
- * main - this class gets input from user for size point start and end,
- * creates a reader to interperates the info.
- * then creates a grid and bfs and runs the algorithm that prints out
- * the shortest way.
- * @return 0 in the end.
- */
-
-int main() {
+int main(int argc, char *argv[]) {
     std::cout << "Client Is Running" <<std::endl;
+
+    cout << argv[1] << endl;
+    Udp udp(0, atoi(argv[1]));
+    udp.initialize();
+    Driver *driver = new Driver(304836497,25,'W', 10, 2518897);
+
+//    std::string serial_str;
+//    boost::iostreams::back_insert_device<std::string> inserter(serial_str);
+//    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
+//    boost::archive::binary_oarchive oa(s);
+//    oa << driver;
+//    s.flush();
+    char buffer[1024];
+//    udp.sendData(serial_str);
+    udp.sendData("Bezalel");
+
+    udp.reciveData(buffer, sizeof(buffer));
+    cout << buffer << endl;
     return 0;
 }

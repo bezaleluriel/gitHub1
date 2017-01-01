@@ -3,6 +3,9 @@
 #include "src/BeginningInfoReader.h"
 #include "src/MainFlow.h"
 //#include <boost/thread.hpp>
+#include <iostream>
+#include "src/sockets/Udp.h"
+#include "src/Driver.h"
 
 
 /**
@@ -15,6 +18,75 @@
 
 int main() {
     std::cout << "Server Is Running" <<std::endl;
+    Udp udp(1, 5555);///opening port
+    udp.initialize();///connecting to port
+    char buffer[1024];
+    udp.reciveData(buffer, sizeof(buffer));///receiving data from the client
+//    string str(buffer, sizeof(buffer));
+//    DriverTest *driverTest;///creating a pointer to driver test
+//    GridNodeTest* gridNodeTest;///creating grid node test
+//    boost::iostreams::basic_array_source<char> device(str.c_str(), str.size());
+//    boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
+//    boost::archive::binary_iarchive ia(s2);
+//    ia >> driverTest;///serialized object will be put in this pointer to driversTest
+//    std::cout << driverTest->getId() << endl;///printing the id
+//    std::cout << driverTest->getChar() <<endl;///printing the char.
+//    gridNodeTest = driverTest->getGridNodeTest();
+//    std::cout<< gridNodeTest->getA()<< std::endl;
+//    std::cout<< gridNodeTest->getC()<< std::endl;
+//    std::cout<< driverTest->getBaseCab()->getNum()<< std::endl;
+    cout << buffer << endl;
+    udp.reciveData(buffer, sizeof(buffer));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     MainFlow mainFlow;
     std::string size;
     int numOfObstacles;
