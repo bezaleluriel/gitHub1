@@ -45,6 +45,23 @@ private:
     int vehicleId;
     TripInformation *tripInformation;
 
+    friend class boost::serialization::access;
+    template <class Archive>
+    void serialize(Archive &ar, const unsigned int version) {
+
+        ar & id;
+        ar & age;
+        ar & yearsOfExperience;
+        ar & numberOfCustomers;
+        ar & averageSatisfaction;
+        ar & available;
+        ar & taxiCab;
+        ar & maritalStatus;
+        ar & vehicleId;
+        ar & tripInformation;
+
+    }
+
 public:
     /**
      * constructor.
@@ -59,24 +76,24 @@ public:
      * @param yearsOfExperience is the years of experience that the driver has.
      */
     Driver(int driverId, int age, char status, int experience, int vehicleId);
-// exampple of boo
-
-    template <class Archive>
-    void serialize(Archive &ar, const unsigned int version) {
-        // ar & status;
-        //ar & location;
-        //ar & passengers;
-        ar & id;
-        ar & age;
-        ar & yearsOfExperience;
-        ar & vehicleId;
-        ar & available;
-        ar & taxiCab;
-        ar & averageSatisfaction;
-        ar & tripInformation;
-
-
-}
+//// exampple of boo
+//
+//    template <class Archive>
+//    void serialize(Archive &ar, const unsigned int version) {
+//        // ar & status;
+//        //ar & location;
+//        //ar & passengers;
+//        ar & id;
+//        ar & age;
+//        ar & yearsOfExperience;
+//        ar & vehicleId;
+//        ar & available;
+//        ar & taxiCab;
+//        ar & averageSatisfaction;
+//        ar & tripInformation;
+//
+//
+//}
 
     /**
      * returns the id of the driver.const because a person's id does not change.

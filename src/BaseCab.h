@@ -8,6 +8,22 @@
 #include "Manufacturer.h"
 #include "Color.h"
 #include "Grid.h"
+#include <boost/serialization/access.hpp>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/tokenizer.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/assign/list_of.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 
 
 class BaseCab {
@@ -22,6 +38,20 @@ protected:
     Color color;
     GridNode* location;
     Structure* map;
+
+    friend class boost::serialization::access;
+    template <class Archive>
+    void serialize(Archive &ar, const unsigned int version) {
+        ar & cabId;
+        ar & numOfKmPassed;
+        ar & velocity;
+        ar & taxiType;
+        ar & coEfficient;
+        ar & manufacturer;
+        ar & color;
+        ar & location;
+        ar & map;
+    }
 
 public:
 
@@ -52,7 +82,24 @@ public:
     int getNumOfKmPassed();
 
     /**
-     * returns the manufacturer(enum).
+     * retur// exampple of boo
+
+    template <class Archive>
+    void serialize(Archive &ar, const unsigned int version) {
+        // ar & status;
+        //ar & location;
+        //ar & passengers;
+        ar & id;
+        ar & age;
+        ar & yearsOfExperience;
+        ar & vehicleId;
+        ar & available;
+        ar & taxiCab;
+        ar & averageSatisfaction;
+        ar & tripInformation;
+
+
+}ns the manufacturer(enum).
      * @return the manufacturer(enum).
      */
     Manufacturer getManufacturer();
@@ -89,6 +136,8 @@ public:
     virtual void move( Point point )=0;
 
 };
+
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(BaseCab)
 
 #endif //SETTINGUOGOOGLETEST_BaseCab_H
 

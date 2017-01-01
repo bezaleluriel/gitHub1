@@ -3,6 +3,22 @@
 
 #include "GridNode.h"
 #include "Structure.h"
+#include <boost/serialization/access.hpp>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/tokenizer.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/assign/list_of.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 
 /**
  * this class simulates a grid of nodes. it contains a two dimensional array and is capable of receiving
@@ -14,6 +30,15 @@ private:
     int sizeX;
     int sizeY;
     GridNode nodesOnStructure [11][11];
+
+    friend class boost::serialization::access;
+    template <class Archive>
+    void serialize(Archive &ar, const unsigned int version) {
+        ar & sizeX;
+        ar & sizeY;
+        ar & nodesOnStructure;
+        ar & boost::serialization::base_object<Structure>(*this);
+    }
 
 public:
     /**

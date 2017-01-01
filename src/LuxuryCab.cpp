@@ -1,6 +1,6 @@
 #include "LuxuryCab.h"
 #include "BaseCab.h"
-
+#include <boost/serialization/export.hpp>
 
 
 LuxuryCab::LuxuryCab() {
@@ -16,5 +16,5 @@ void LuxuryCab::move(Point p) {
     location = map->getNode(p);
 }
 
-
+BOOST_CLASS_EXPORT(LuxuryCab)
 

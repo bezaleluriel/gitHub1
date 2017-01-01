@@ -1,5 +1,5 @@
 #include "StandardCab.h"
-
+#include <boost/serialization/export.hpp>
 
 StandardCab::StandardCab() {
 
@@ -13,3 +13,6 @@ StandardCab::StandardCab(int cabId, int taxiType, char manufacturer, char color,
 void StandardCab::move(Point p) {
     location = map->getNode(p);
 }
+
+
+BOOST_CLASS_EXPORT(StandardCab)

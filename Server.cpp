@@ -22,20 +22,15 @@ int main() {
     udp.initialize();///connecting to port
     char buffer[1024];
     udp.reciveData(buffer, sizeof(buffer));///receiving data from the client
-//    string str(buffer, sizeof(buffer));
-//    DriverTest *driverTest;///creating a pointer to driver test
-//    GridNodeTest* gridNodeTest;///creating grid node test
-//    boost::iostreams::basic_array_source<char> device(str.c_str(), str.size());
-//    boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
-//    boost::archive::binary_iarchive ia(s2);
-//    ia >> driverTest;///serialized object will be put in this pointer to driversTest
-//    std::cout << driverTest->getId() << endl;///printing the id
-//    std::cout << driverTest->getChar() <<endl;///printing the char.
-//    gridNodeTest = driverTest->getGridNodeTest();
-//    std::cout<< gridNodeTest->getA()<< std::endl;
-//    std::cout<< gridNodeTest->getC()<< std::endl;
-//    std::cout<< driverTest->getBaseCab()->getNum()<< std::endl;
-    cout << buffer << endl;
+    string str(buffer, sizeof(buffer));
+    Driver *driver;///creating a pointer to driver test
+    boost::iostreams::basic_array_source<char> device(str.c_str(), str.size());
+    boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
+    boost::archive::binary_iarchive ia(s2);
+    ia >> driver;///serialized object will be put in this pointer to driversTest
+    std::cout << driver->getId() << endl;
+
+  //  cout << buffer << endl;
     udp.reciveData(buffer, sizeof(buffer));
 
 
@@ -120,6 +115,9 @@ int main() {
         //if choice equals 6 then there is no string to be sent to it .
         if (choice == 6){
            mainFlow.choiceMenu();
+        }
+        if(choice == 1){
+
         }
         else{
             std::cin >> s;

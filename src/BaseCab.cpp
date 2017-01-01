@@ -4,6 +4,7 @@
 
 #include "BaseCab.h"
 
+
 BaseCab::BaseCab() {}
 
 BaseCab::BaseCab(int cabId, int taxiType, char manufacturer, char color, Structure* map) {

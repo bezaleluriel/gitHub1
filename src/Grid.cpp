@@ -1,4 +1,5 @@
 #include "Grid.h"
+#include <boost/serialization/export.hpp>
 
 /**
  * this class simulates a grid of nodes. it contains a two dimensional array and is capable of receiving
@@ -82,3 +83,5 @@ GridNode* Grid::getNode (Point p){
 void Grid::markObstacle(Point p) {
     nodesOnStructure[p.getX()][p.getY()].setObstacle(true);
 }
+
+BOOST_CLASS_EXPORT(Grid)
