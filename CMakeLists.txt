@@ -7,7 +7,7 @@ set(BOOST_ROOT CACHE PATH "/usr/include/boost/")
 find_package(Boost 1.58.0 COMPONENTS serialization system)
 include_directories(${Boost_INCLUDE_DIR})
 
-set(SOURCE_FILES main.cpp Tests/ClassName.h Tests/test.cpp Tests/PoinTest.cpp src/Point.cpp
+set(SOURCE_FILES Tests/ClassName.h Tests/test.cpp Tests/PoinTest.cpp src/Point.cpp
         src/Point.h src/BeginningInfoReader.cpp
         src/BeginningInfoReader.h src/Bfs.cpp src/Bfs.h src/Grid.cpp src/Grid.h src/GridNode.cpp
         src/GridNode.h src/Structure.h
@@ -22,15 +22,26 @@ set(SOURCE_FILES main.cpp Tests/ClassName.h Tests/test.cpp Tests/PoinTest.cpp sr
         Tests/GpsTest.cpp
         src/MainFlow.cpp src/MainFlow.h
         Tests/PassengerTest.cpp Tests/TaxiCenterTest.cpp Tests/TripInformationTest.cpp
-        Tests/StandartCabTest.cpp src/BaseCab.cpp src/BaseCab.h src/main.cpp Tests/LaxuryCabTest.cpp)
-        
-add_executable(SettingUoGoogleTest ${SOURCE_FILES} Tests/ClassName.h Tests/test.cpp Tests/PoinTest.cpp
+        Tests/StandartCabTest.cpp src/BaseCab.cpp src/BaseCab.h Tests/LaxuryCabTest.cpp
+        src/sockets/Socket.cpp src/sockets/Socket.h src/sockets/Udp.cpp src/sockets/Udp.h)
+
+add_executable(Client ${SOURCE_FILES} Client.cpp)
+        target_link_libraries(Client gtest gtest_main)
+
+add_executable(Server ${SOURCE_FILES} Server.cpp)
+        target_link_libraries(Server gtest gtest_main)
+
+add_executable(SettingUoGoogleTest ${SOURCE_FILES} main.cpp Tests/ClassName.h Tests/test.cpp Tests/PoinTest.cpp
         Tests/GridNodeTest.cpp Tests/GridTest.cpp Tests/bfsTest.cpp Tests/BeginningInfoReaderTest.cpp
         Tests/DriverTest.cpp
         Tests/GpsTest.cpp
-        Tests/PassengerTest.cpp Tests/TaxiCenterTest.cpp Tests/TripInformationTest.cpp Tests/StandartCabTest.cpp src/BaseCab.cpp src/BaseCab.h src/main.cpp Tests/LaxuryCabTest.cpp)
-        
+        Tests/PassengerTest.cpp Tests/TaxiCenterTest.cpp Tests/TripInformationTest.cpp Tests/StandartCabTest.cpp src/BaseCab.cpp src/BaseCab.h Tests/LaxuryCabTest.cpp)
+
         target_link_libraries(SettingUoGoogleTest gtest gtest_main)
+
+
+target_link_libraries(Server  ${Boost_LIBRARIES})
+target_link_libraries(Client  ${Boost_LIBRARIES})
 
 
 target_link_libraries(SettingUoGoogleTest ${Boost_LIBRARIES})

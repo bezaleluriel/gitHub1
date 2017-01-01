@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Bfs.h"
-#include "BeginningInfoReader.h"
-#include "MainFlow.h"
+#include "src/Bfs.h"
+#include "src/BeginningInfoReader.h"
+#include "src/MainFlow.h"
 //#include <boost/thread.hpp>
 
 
@@ -14,6 +14,7 @@
  */
 
 int main() {
+    std::cout << "Server Is Running" <<std::endl;
     MainFlow mainFlow;
     std::string size;
     int numOfObstacles;
