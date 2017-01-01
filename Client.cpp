@@ -44,5 +44,16 @@ int main(int argc, char *argv[]) {
     udp.reciveData(buffer, sizeof(buffer));
 
 
+    char buffer2[1024];
+    udp.reciveData(buffer2, sizeof(buffer2));///receiving data from the client
+    string str(buffer2, sizeof(buffer2));
+    BaseCab *taxi;///creating a pointer to driver test
+    boost::iostreams::basic_array_source<char> device(str.c_str(), str.size());
+    boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
+    boost::archive::binary_iarchive ia(s2);
+    ia >> taxi;///serialized object will be put in this pointer to driversTest
+    std::cout << taxi->getCabId() << endl;
+
+
     return 0;
 }
