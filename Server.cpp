@@ -12,7 +12,7 @@
  * main - this class gets input from user for size point start and end,
  * creates a reader to interperates the info.
  * then creates a grid and bfs and runs the algorithm that prints out
- * the shortest way.
+ * the b shortest way.
  * @return 0 in the end.
  */
 
