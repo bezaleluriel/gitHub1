@@ -36,15 +36,20 @@ void MainFlow::choiceMenu(int choice, std::string s) {
         /*
          * case 1 is to insert a driver.
          */
-        case 1 : {
-            int driverId = stoi(vec[0]);
-            int age = stoi(vec[1]);
-            char status = (vec[2])[0];
-            int experience = stoi(vec[3]);
-            int vehicleId = stoi(vec[4]);
-            taxiCenter.addDriver(driverId, age, status, experience, vehicleId);
-            break;
-        }
+//        case 1 : {
+//
+//
+//
+//
+//
+//            int driverId = stoi(vec[0]);
+//            int age = stoi(vec[1]);
+//            char status = (vec[2])[0];
+//            int experience = stoi(vec[3]);
+//            int vehicleId = stoi(vec[4]);
+//            taxiCenter.addDriver(driverId, age, status, experience, vehicleId);
+//            break;
+//        }
 
 
             /*
